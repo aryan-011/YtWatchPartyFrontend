@@ -8,16 +8,21 @@ import {
   CogIcon,
 } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
+import VoiceChat from "./VoiceChat";
 
 const ControlBar = ({
-  darkMode,
-  toggleDarkMode,
+  userId,
+  socket,
+  roomId,
   sidebarContent,
   openSidebar,
+  toggleVoiceChat, 
+  voiceChatActive ,
 }) => {
   const unreadCount = useSelector((state) => state.messages.unreadCount);
   return (
     <div className="fixed bottom-7 left-1/2 transform -translate-x-1/2 flex items-center space-x-7 py-4 px-10 bg-gray-800 text-white rounded-full shadow-2xl z-50">
+      <VoiceChat roomId={roomId} socket={socket} userId={userId}/>
       <button
         className={`${
           sidebarContent === "details"

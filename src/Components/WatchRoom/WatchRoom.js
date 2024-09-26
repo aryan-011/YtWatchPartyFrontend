@@ -21,6 +21,8 @@ const WatchRoom = () => {
   const [sidebarContent, setSidebarContent] = useState(null);
   const [participants, setParticipants] = useState([]);
   const [unreadMessages,setUnreadMessages] =useState(false);
+  const [voiceChatActive, setVoiceChatActive] = useState(false);
+
   const dispatch=useDispatch();
   useEffect(() => {
     const storedId = localStorage.getItem("id");
@@ -79,6 +81,10 @@ const WatchRoom = () => {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
+  };
+
+  const toggleVoiceChat = () => {
+    setVoiceChatActive(!voiceChatActive);
   };
 
   const openSidebar = (content) => {
@@ -145,9 +151,14 @@ const WatchRoom = () => {
       {/* Control Bar */}
       <ControlBar
         darkMode={darkMode}
+        roomId={roomId}
         toggleDarkMode={toggleDarkMode}
+        socket={socket}
+        userId={userId}
         sidebarContent={sidebarContent}
         openSidebar={openSidebar}
+        toggleVoiceChat={toggleVoiceChat}
+        voiceChatActive={voiceChatActive}
       />
     </div>
   );
