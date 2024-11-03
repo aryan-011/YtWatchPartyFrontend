@@ -28,7 +28,7 @@ const HostControls = ({ onClose }) => {
           ✕
         </button>
       </div>
-      {Object.keys(permissions).map((key) => (
+      {/* {Object.keys(permissions).map((key) => (
         <div key={key} className="flex justify-between items-center mb-6">
           <span className="text-lg">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
           <button
@@ -44,7 +44,8 @@ const HostControls = ({ onClose }) => {
             />
           </button>
         </div>
-      ))}
+      ))} */}
+      <div>Coming soon</div>
     </motion.div>
   );
 };

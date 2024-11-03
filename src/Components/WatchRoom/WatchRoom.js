@@ -40,9 +40,21 @@ const WatchRoom = () => {
         dispatch(addMessage({ ...message, isRead: sidebarContent === "chat" })); 
       });
 
+      socket.on("userLeft", (data) => {
+        const { userId } = data;
+      
+        setParticipants((prevParticipants) => 
+          prevParticipants.filter(participant => participant._id !== userId)
+        );
+      });
+      
+
       socket.on("videoStateUpdate", (data) => {
         applyVideoStateChange(data);
       });
+      socket.on("userJoined",(data)=>{
+        setParticipants((prevParticipant)=>[...prevParticipant,data]);
+      })
 
       socket.on("error", (errorMessage) => {
         console.log(errorMessage);
